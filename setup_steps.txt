@@ -1,0 +1,89 @@
+node1-master
+node2-slave
+node3-slave
+node4-slave
+
+
+sudo apt-get update
+sudo -i
+passwd - admin@123
+
+
+vi /etc/ssh/sshd_config(do this for all nodes)
+----------------------------------------------
+PermitRootLogin yes
+AuthorizedKeysFile      /root/.ssh/authorized_keys .ssh/authorized_keys
+PasswordAuthentication yes
+ChallengeResponseAuthentication yes
+
+save it and do ssh service restart
+
+ssh-keygen
+
+ssh-copy-id root@node2-slave
+ssh-copy-id root@node3-slave
+ssh-copy-id root@node4-slave
+
+scp sample.txt root@node2-slave:/root
+ssh root@node2-slave
+
+Java Link:-
+wget https://download.oracle.com/otn/java/jdk/8u221-b11/230deb18db3e4014bb8e3e8324f81b43/jdk-8u221-linux-x64.tar.gz?AuthParam=1565249839_458aef2977da32581beda3808355ef5d
+
+scp jdk-8u221-linux-x64.tar.gz  root@node2-slave:/root/downloads
+scp jdk-8u221-linux-x64.tar.gz  root@node3-slave:/root/downloads
+scp jdk-8u221-linux-x64.tar.gz  root@node4-slave:/root/downloads
+
+tar -zxf jdk-8u221-linux-x64.tar.gz
+
+mv jdk1.8.0_221/ /usr/
+
+ln -s /usr/jdk1.8.0_221/ java8
+
+vi ~/.bashrc
+export JAVA_HOME="/root/links/java8"
+export PATH=${PATH}:${JAVA_HOME}/bin
+
+
+scp ~/.bashrc root@node2-slave:~/.bashrc
+scp ~/.bashrc root@node3-slave:~/.bashrc
+scp ~/.bashrc root@node4-slave:~/.bashrc
+
+$ wget https://archive.cloudera.com/cm6/6.3.0/cloudera-manager-installer.bin
+
+$ chmod u+x cloudera-manager-installer.bin
+
+$ sudo ./cloudera-manager-installer.bin
+
+
+cluster name - hive-cluster
+
+apt --fix-broken install
+
+
+hive - hive
+rman - QhbKWMVhe1
+nav - D6DIRMcQAf
+navms - ZvGdn96kr0
+oozie - DvOXbhVW3O
+
+
+/hbase
+HDFS Block size - 1024
+/dfs/dn
+/dfs/nn
+/dfs/snn
+/user/hive/warehouse
+/impala/impalad
+alert mail - localhost
+/var/lib/cloudera-host-monitor
+/var/lib/cloudera-service-monitor
+/user/oozie
+/var/lib/oozie/data
+zookeeper znode - /solr
+HDFS Data Directory - /solr
+NodeManager Local Directories - /yarn/nm
+Cloudera Manager Container Usage Metrics Directory - /tmp/cmYarnContainerMetrics
+Container Usage Output Directory - /tmp/cmYarnContainerMetricsAggregate
+Data Directory - /var/lib/zookeeper
+Transaction Log Directory - /var/lib/zookeeper
